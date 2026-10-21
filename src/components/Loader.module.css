@@ -1,0 +1,26 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-7) 0;
+  color: var(--ink-soft);
+}
+
+.spin {
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* texte lu par les lecteurs d'écran, invisible à l'écran */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

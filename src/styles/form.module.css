@@ -1,0 +1,27 @@
+/* Login, Register, CommentForm */
+.page {
+  max-width: 26rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.submit {
+  align-self: flex-start;
+}
+
+@media (max-width: 30rem) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+}

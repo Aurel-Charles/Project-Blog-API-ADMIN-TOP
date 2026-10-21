@@ -1,0 +1,45 @@
+/* Un post complet : SinglePost et dernier post de l'accueil */
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-bottom: var(--space-6);
+  font-size: 0.9375rem;
+}
+
+/* L'élément marquant du site : les titres d'articles */
+.title {
+  margin-bottom: var(--space-4);
+  font-family: var(--serif);
+  font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
+
+.titleLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.titleLink:hover {
+  color: var(--plume);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-5);
+  margin-bottom: var(--space-6);
+  color: var(--ink-soft);
+  font-size: 0.9375rem;
+}
+
+.body {
+  max-width: var(--measure);
+  font-family: var(--serif);
+  font-size: 1.1875rem;
+  line-height: 1.7;
+  white-space: pre-line; /* garde les retours à la ligne du contenu */
+}

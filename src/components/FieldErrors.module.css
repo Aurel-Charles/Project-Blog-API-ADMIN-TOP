@@ -1,0 +1,14 @@
+/* annotation en rouge sous le champ */
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-1);
+  margin-top: var(--space-1);
+  color: var(--correction);
+  font-size: 0.875rem;
+}
+
+.icon {
+  flex-shrink: 0;
+  margin-top: 0.2em; /* aligne l'icône sur la première ligne du texte */
+}

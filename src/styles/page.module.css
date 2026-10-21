@@ -1,0 +1,24 @@
+/* Styles partagés entre les pages : titre de page, chapeau, états */
+.heading {
+  margin-bottom: var(--space-4);
+  font-family: var(--serif);
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+.lede {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+  color: var(--ink-soft);
+  font-size: 1.0625rem;
+}
+
+.status {
+  color: var(--ink-soft);
+}
+
+.error {
+  color: var(--correction);
+}

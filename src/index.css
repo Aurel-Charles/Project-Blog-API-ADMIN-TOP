@@ -1,0 +1,140 @@
+/* ---------- Tokens ---------- */
+:root {
+  --paper: #ffffff;
+  --ink: #1c2230;
+  --ink-soft: #5b6475;
+  --rule: #dde1e8;
+  --wash: #f3f5f9;
+  --plume: #2b4acb;
+  --plume-dark: #1f379c;
+  --correction: #b3261e;
+
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Fira Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --page: 46rem;     /* largeur max du contenu */
+  --measure: 68ch;   /* longueur de ligne confortable pour lire */
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+
+  --radius: 4px;
+  color-scheme: light;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, ul, ol {
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Base ---------- */
+a {
+  color: var(--plume);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--plume);
+  outline-offset: 2px;
+}
+
+/* ---------- Formulaires ---------- */
+label {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: inherit;
+  font: inherit;
+}
+
+textarea {
+  min-height: 7rem;
+  resize: vertical;
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+
+input:hover,
+textarea:hover {
+  border-color: var(--ink-soft);
+}
+
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  border-color: var(--plume);
+  box-shadow: 0 0 0 1px var(--plume);
+}
+
+/* Bouton principal par défaut ; les variantes discrètes sont dans les modules */
+button {
+  padding: 0.5rem 1.125rem;
+  border: 1px solid var(--plume);
+  border-radius: var(--radius);
+  background: var(--plume);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--plume-dark);
+  background: var(--plume-dark);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
