@@ -1,0 +1,41 @@
+.footer {
+  border-top: 1px solid var(--rule);
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-5);
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: var(--space-5);
+  color: var(--ink-soft);
+  font-size: 0.875rem;
+}
+
+.inner a {
+  color: inherit;
+}
+
+.inner a:hover {
+  color: var(--ink);
+}
+
+.github {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 40rem) {
+  .inner {
+    padding: var(--space-5) var(--space-4);
+  }
+}
