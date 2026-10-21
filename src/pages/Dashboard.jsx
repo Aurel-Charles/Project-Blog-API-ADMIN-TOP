@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router";
 import { apiFetch } from "../api/api";
-import { formatDate } from "../utils/formatDate";
 import { Loader } from "../components/Loader";
 import page from "../styles/page.module.css"
 import styles from "./Dashboard.module.css"
+import { DashboardPost } from "../components/DashboardPost";
 
 export function Dashboard() {
     const [posts, setPosts] = useState(null)
     const [error, setError] = useState(null)
     const [actionError, setActionError] = useState(null)
 
-    // const for class badges
-    const draftBadge = `${styles.badge} ${styles.draft}`
-    const publishedBadge = `${styles.badge} ${styles.published}`
 
     useEffect(()=> {
             async function getPosts() {
@@ -70,55 +67,13 @@ export function Dashboard() {
         :
             <ol className={styles.list}>
                 {posts.map((post)=> (
-                    <li key={post.id} className={styles.item}>
-                        {post.publishedAt
-                            ? <span className={publishedBadge}>Published</span>
-                            : <span className={draftBadge}>Draft</span>}
-
-                        <div className={styles.body}>
-                            <h2 className={styles.title}>
-                                <Link to={`/posts/${post.id}`}>{post.title}</Link>
-                            </h2>
-
-                            <p className={styles.meta}>
-                                {post.publishedAt ? (
-                                    <>
-                                    Published{" "}
-                                    <time dateTime={post.publishedAt}>
-                                        {formatDate(post.publishedAt, "short")}
-                                    </time>
-                                    </>
-                                ) : (
-                                    <>
-                                    Created{" "}
-                                    <time dateTime={post.createdAt}>
-                                        {formatDate(post.createdAt, "short")}
-                                    </time>
-                                    {post.updatedAt !== post.createdAt && (
-                                        <>
-                                        {" · "}Updated{" "}
-                                        <time dateTime={post.updatedAt}>
-                                            {formatDate(post.updatedAt, "short")}
-                                        </time>
-                                        </>
-                                    )}
-                                    </>
-                                )}
-                                {" · "}By {post.author.firstname} {post.author.lastname}
-                            </p>
-                        {actionError && post.id === actionError.postId && <p className={page.error} role="alert">{actionError.message}</p> }
-                        </div>
-
-
-                        <div className={styles.actions}>
-                        <button type="button" onClick={() => togglePublish(post)}>
-                            {post.publishedAt ? "Unpublish" : "Publish"}
-                        </button>
-                        <button className={styles.deleteBtn} type="button" onClick={() => deletePost(post)}>
-                            Delete
-                        </button>
-                        </div>
-                    </li>
+                    <DashboardPost
+                        key={post.id}
+                        post={post}
+                        onTogglePublish={togglePublish}
+                        onDeletePost={deletePost}
+                        error={actionError && post.id === actionError.postId ? actionError.message : null}
+                    />
                 ) )}
             </ol>
         }
