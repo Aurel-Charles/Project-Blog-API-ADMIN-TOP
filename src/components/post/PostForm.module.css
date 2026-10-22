@@ -1,0 +1,56 @@
+/* Formulaire d'écriture : plus large qu'un login, calé sur la longueur de lecture */
+.page {
+  max-width: var(--measure);
+}
+
+/* Auteur et dates, discrets sous le titre de la page */
+.meta {
+  margin-top: calc(-1 * var(--space-2));
+  margin-bottom: var(--space-6);
+  color: var(--ink-soft);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Le champ titre ressemble déjà au titre de l'article */
+.titleInput {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Une vraie zone d'écriture, pas une petite boîte */
+.contentInput {
+  min-height: 22rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--rule);
+}
+
+/* Icône et texte alignés dans le bouton pendant l'enregistrement */
+.submit {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.spin {
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -8,6 +8,8 @@ import page from "../styles/page.module.css"
 import article from "../styles/article.module.css"
 import { PostDate } from "../components/post/PostDate";
 import { PostAction } from "../components/post/PostAction";
+import { PostStatus } from "../components/post/PostStatus";
+import styles from "./SinglePost.module.css"
 
 export function SinglePost() {
     const navigate = useNavigate()
@@ -66,16 +68,20 @@ export function SinglePost() {
     return (
         <>
         <article>
-            <Link to="/" className={article.back}>
-                <ArrowLeft size={16} aria-hidden="true" />
-                Dashboard
-            </Link>
-            <PostAction post={post} onTogglePublish={togglePublish} onDeletePost={deletePost} showView={false} />
-            {actionError && <p role="alert" className={page.error}>{actionError.message}</p> }
-            <h1 className={article.title}>{post.title}</h1>
+            <div className={styles.toolbar}>
+                <Link to="/" className={styles.back}>
+                    <ArrowLeft size={16} aria-hidden="true" />
+                    Dashboard
+                </Link>
+                <PostAction post={post} onTogglePublish={togglePublish} onDeletePost={deletePost} showView={false} />
+            </div>
+            {actionError && <p role="alert" className={`${page.error} ${styles.actionError}`}>{actionError.message}</p> }
+
+            <PostStatus post={post} />
+            <h1 className={`${article.title} ${styles.title}`}>{post.title}</h1>
             <div className={article.meta}>
                 <span>By {post.author.firstname} {post.author.lastname}</span>
-                <PostDate post={post} />
+                <span><PostDate post={post} /></span>
             </div>
             <div className={article.body}>{post.content}</div>
         </article>

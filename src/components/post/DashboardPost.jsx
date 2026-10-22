@@ -3,17 +3,13 @@ import styles from "../../pages/Dashboard.module.css"
 import page from "../../styles/page.module.css"
 import { PostDate } from "./PostDate";
 import { PostAction } from "./PostAction";
+import { PostStatus } from "./PostStatus";
 
 
 export function DashboardPost({post, onTogglePublish, onDeletePost, error}) {
-    // const for class badges
-    const draftBadge = `${styles.badge} ${styles.draft}`
-    const publishedBadge = `${styles.badge} ${styles.published}`
     return(
         <li className={styles.item}>
-            {post.publishedAt
-                ? <span className={publishedBadge}>Published</span>
-                : <span className={draftBadge}>Draft</span>}
+            <PostStatus post={post} />
 
             <div className={styles.body}>
                 <h2 className={styles.title}>

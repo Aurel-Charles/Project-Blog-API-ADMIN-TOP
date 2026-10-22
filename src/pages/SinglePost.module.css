@@ -1,0 +1,29 @@
+/* Barre d'outils en haut de l'article : retour à gauche, actions à droite */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--rule);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.9375rem;
+}
+
+/* L'erreur d'action, juste sous la barre, avant l'article */
+.actionError {
+  margin-top: calc(-1 * var(--space-5));
+  margin-bottom: var(--space-5);
+}
+
+/* Un peu d'air entre la pastille et le titre */
+.title {
+  margin-top: var(--space-3);
+}

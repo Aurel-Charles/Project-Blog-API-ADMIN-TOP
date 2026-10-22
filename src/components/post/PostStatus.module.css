@@ -1,0 +1,28 @@
+/* Pastille d'état : une petite étiquette, pas un bloc */
+.badge {
+  display: inline-block;
+  justify-self: start;
+  margin-top: 0.2rem;
+  padding: 0.125rem var(--space-2);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+/* Publié : mis en avant avec la couleur d'accent */
+.published {
+  background-color: var(--plume);
+  color: var(--paper);
+}
+
+/* Brouillon : discret, ce n'est pas une erreur */
+.draft {
+  background-color: var(--wash);
+  border-color: var(--rule);
+  color: var(--ink-soft);
+}
