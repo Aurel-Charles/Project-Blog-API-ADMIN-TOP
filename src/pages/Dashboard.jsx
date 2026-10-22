@@ -4,7 +4,7 @@ import { apiFetch } from "../api/api";
 import { Loader } from "../components/Loader";
 import page from "../styles/page.module.css"
 import styles from "./Dashboard.module.css"
-import { DashboardPost } from "../components/DashboardPost";
+import { DashboardPost } from "../components/post/DashboardPost";
 
 export function Dashboard() {
     const [posts, setPosts] = useState(null)

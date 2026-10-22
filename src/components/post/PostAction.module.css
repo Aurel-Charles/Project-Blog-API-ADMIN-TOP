@@ -1,0 +1,37 @@
+
+.edit {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1.125rem;
+    border: 1px solid var(--plume);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--plume);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  
+  .edit:hover {
+    background: var(--plume);
+    color: #fff;
+  }
+  
+
+  .deleteBtn {
+    display: inline-flex;
+    align-items: center;
+    border-color: var(--correction);
+    background: var(--paper);
+    color: var(--correction);
+  }
+  
+  .deleteBtn:hover {
+    border-color: var(--correction);
+    background: var(--correction);
+    color: #fff;
+  }
+
+  .actions {
+    display: flex;
+    gap: var(--space-2);
+  }
