@@ -41,8 +41,6 @@ export function Dashboard() {
 
     async function deletePost(post) {
         setActionError(null)
-        const ok = confirm(`Delete this post: ${post.title}`)
-        if (ok) {
             try {
                 await apiFetch(`/posts/${post.id}`, "DELETE")
                 setPosts((prev)=> prev.filter(p => p.id !== post.id))
@@ -50,7 +48,6 @@ export function Dashboard() {
                 console.error(error)
                 setActionError({message : error.message, postId : post.id})
             }
-        }
     }
 
     if (error) return <p className={page.error}>{error.message}</p>

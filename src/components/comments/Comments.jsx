@@ -30,7 +30,6 @@ export function Comments({postId}) {
 
     async function deleteComment(commentId) {
         setDeleteError(null)
-        if (!confirm("Delete this comment?")) return
         try {
             await apiFetch(`/posts/${postId}/comments/${commentId}`, "DELETE")
             setComments((prev) => prev.filter((c) => c.id !== commentId))

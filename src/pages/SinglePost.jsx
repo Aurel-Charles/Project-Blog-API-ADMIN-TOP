@@ -49,15 +49,12 @@ export function SinglePost() {
 
     async function deletePost(post) {
         setActionError(null)
-        const ok = confirm(`Delete this post: ${post.title}`)
-        if (ok) {
-            try {
-                await apiFetch(`/posts/${post.id}`, "DELETE")
-                navigate("/")
-            } catch (error) {
-                console.error(error)
-                setActionError(error)
-            }
+        try {
+            await apiFetch(`/posts/${post.id}`, "DELETE")
+            navigate("/")
+        } catch (error) {
+            console.error(error)
+            setActionError(error)
         }
     }
 
