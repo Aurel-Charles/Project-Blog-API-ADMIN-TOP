@@ -1,0 +1,94 @@
+/* Écran de connexion : une carte centrée sur toute la hauteur de la fenêtre */
+.screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  padding: var(--space-6) var(--space-4);
+  background: var(--wash);
+}
+
+.card {
+  width: 100%;
+  max-width: 24rem;
+  padding: var(--space-6);
+  border: 1px solid var(--rule);
+  border-radius: calc(var(--radius) * 2);
+  background: var(--paper);
+  box-shadow: 0 1px 2px rgb(28 34 48 / 0.04), 0 8px 24px rgb(28 34 48 / 0.06);
+}
+
+/* Le même repère que dans le header : on sait où l'on est */
+.brand {
+  margin-bottom: var(--space-5);
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.admin {
+  color: var(--plume);
+}
+
+.heading {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+.lede {
+  margin-top: var(--space-1);
+  margin-bottom: var(--space-5);
+  color: var(--ink-soft);
+  font-size: 0.9375rem;
+}
+
+/* Message d'erreur général : un encadré, pas juste du texte rouge */
+.alert {
+  margin-bottom: var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--correction);
+  border-radius: var(--radius);
+  background: #fbeeed;
+  color: var(--correction);
+  font-size: 0.9375rem;
+}
+
+.alert a {
+  color: inherit;
+  font-weight: 600;
+}
+
+/* Bouton pleine largeur, icône et texte centrés pendant la connexion */
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.spin {
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.blogLink {
+  color: var(--ink-soft);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.blogLink:hover {
+  color: var(--plume);
+  text-decoration: underline;
+}
