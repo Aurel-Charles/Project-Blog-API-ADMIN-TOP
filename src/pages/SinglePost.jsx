@@ -10,6 +10,7 @@ import { PostDate } from "../components/post/PostDate";
 import { PostAction } from "../components/post/PostAction";
 import { PostStatus } from "../components/post/PostStatus";
 import styles from "./SinglePost.module.css"
+import DOMPurify from "dompurify";
 
 export function SinglePost() {
     const navigate = useNavigate()
@@ -58,6 +59,10 @@ export function SinglePost() {
         }
     }
 
+    function purifyInnerHtml(content) {
+        const sanitizedHtml =  DOMPurify.sanitize(content)
+        return { __html: sanitizedHtml }
+    }
 
     if (error) return <p role="alert" className={page.error}>{error.message}</p>
     if (post === null) return <Loader />
@@ -80,7 +85,7 @@ export function SinglePost() {
                 <span>By {post.author.firstname} {post.author.lastname}</span>
                 <span><PostDate post={post} /></span>
             </div>
-            <div className={article.body}>{post.content}</div>
+            <div className={article.body} dangerouslySetInnerHTML={purifyInnerHtml(post.content)} ></div>
         </article>
 
         <Comments postId={postId}/>

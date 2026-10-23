@@ -1,11 +1,12 @@
 import { useState } from "react"
-import { useNavigate, useOutletContext } from "react-router"
+import { Link, useNavigate, useOutletContext } from "react-router"
 import { LoaderPinwheel } from "lucide-react"
 import { FieldErrors } from "../FieldErrors"
 import { PostDate } from "./PostDate"
 import { apiFetch } from "../../api/api"
 import page from "../../styles/page.module.css"
 import styles from "./PostForm.module.css"
+import { Editor } from "@tinymce/tinymce-react"
 
 export function PostForm({post = false}) {
     const navigate = useNavigate()
@@ -72,17 +73,29 @@ export function PostForm({post = false}) {
 
                 <div>
                     <label htmlFor="content">Content</label>
-                    <textarea
-                        className={styles.contentInput}
-                        name="content"
+
+                    <Editor
                         id="content"
-                        onChange={(e)=> storeValue(setContent, e)}
+                        tinymceScriptSrc="/tinymce/tinymce.min.js"
+                        licenseKey="gpl"
                         value={content}
+                        onEditorChange={(newContent)=> setContent(newContent)}
+                        init={{
+                            menubar: false,
+                            promotion:false,
+                            plugins: "lists link",
+                            toolbar: "undo redo | blocks | bold italic | bullist numlist | blockquote link | removeformat",
+                            block_formats: "Paragraph=p; Heading 2=h2; Heading 3=h3; Code block=pre",
+                            link_target_list: false,
+                            link_title: false, 
+                        }}
                     />
+
                     <FieldErrors error={error} field={"content"}/>
                 </div>
 
                 <div className={styles.footer}>
+                    {post && <Link to={`/posts/${post.id}`} className={styles.cancel}>Cancel</Link>}
                     <button type="submit" className={styles.submit} disabled={isSubmitting}>
                         {isSubmitting ? (
                             <>
@@ -93,6 +106,7 @@ export function PostForm({post = false}) {
                             post ? "Save changes" : "Create post"
                         )}
                     </button>
+                    
                 </div>
             </form>
         </div>
