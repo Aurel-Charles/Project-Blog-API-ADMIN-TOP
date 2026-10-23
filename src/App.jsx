@@ -51,10 +51,19 @@ function App() {
   }
   
   if (!user) {
-    if (authError) {
-      return <p className={page.error} role="alert">{authError.message}</p>
-    }
-    return <Loader />
+    return (
+      <>
+        <Header setToken={setToken} user={user} />
+  
+        <main className={styles.main}>
+          {authError
+            ? <p className={page.error} role="alert">{authError.message}</p>
+            : <Loader />}
+        </main>
+  
+        <Footer />
+      </>
+    )
   }
 
   return (

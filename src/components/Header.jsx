@@ -20,7 +20,7 @@ export function Header({setToken, user}) {
         <header className={styles.header}>
           <div className={styles.inner}>
             <Link to="/" className={styles.brand}><span className={styles.admin} >Admin</span> | My Odin Project blog</Link>
-
+            {user && 
             <nav className={styles.nav} aria-label="Main">
               <NavLink to="/" end className={navClass}>Dashboard</NavLink>
               <NavLink to="/form" end className={navClass}>New Post</NavLink>
@@ -31,6 +31,7 @@ export function Header({setToken, user}) {
                   Log out
               </button>
             </nav>
+            }
           </div>
         </header>
     )
