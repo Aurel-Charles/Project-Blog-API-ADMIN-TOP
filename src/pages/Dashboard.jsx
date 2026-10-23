@@ -41,27 +41,22 @@ export function Dashboard() {
 
     async function deletePost(post) {
         setActionError(null)
-            try {
-                await apiFetch(`/posts/${post.id}`, "DELETE")
-                setPosts((prev)=> prev.filter(p => p.id !== post.id))
-            } catch (error) {
-                console.error(error)
-                setActionError({message : error.message, postId : post.id})
-            }
+        try {
+            await apiFetch(`/posts/${post.id}`, "DELETE")
+            setPosts((prev)=> prev.filter(p => p.id !== post.id))
+        } catch (error) {
+            console.error(error)
+            setActionError({message : error.message, postId : post.id})
+        }
     }
 
-    if (error) return <p className={page.error}>{error.message}</p>
-    if (posts === null) return <Loader />
+    let postsSection 
 
-    return (
-        <>
-        <div className={styles.top}>
-            <h1 className={page.heading}>Posts</h1>
-            <Link className={styles.newPost} to="/form">New Post</Link>
-        </div>
-        {posts.length === 0  ?
-            <p className={page.status}>No posts yet.</p>
-        :
+    if (error) { postsSection =  <p role="alert" className={page.error}>{error.message}</p>}
+    else if (posts === null) postsSection = <Loader />
+    else if (posts.length === 0) postsSection = <p className={page.status}>No posts yet.</p>
+    else {
+        postsSection = (
             <ol className={styles.list}>
                 {posts.map((post)=> (
                     <DashboardPost
@@ -73,7 +68,17 @@ export function Dashboard() {
                     />
                 ) )}
             </ol>
-        }
+        )
+    }
+
+
+    return (
+        <>
+        <div className={styles.top}>
+            <h1 className={page.heading}>Posts</h1>
+            <Link className={styles.newPost} to="/form">New Post</Link>
+        </div>
+        {postsSection}
         </>
     )
 }

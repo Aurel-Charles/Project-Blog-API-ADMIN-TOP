@@ -1,15 +1,21 @@
 import { formatDate } from "../../utils/formatDate"
-import { Trash2 } from "lucide-react"
+import { LoaderPinwheel, Trash2 } from "lucide-react"
 import styles from "./SingleComment.module.css"
 import { useState } from "react"
 import { ConfirmDialog } from "../ConfirmDialog"
 
 export function SingleComment({comment, deleteComment}) {
     const [isOpen, setIsOpen] = useState(false)
+    const [isDeleting, setIsDeleting] = useState(false)
 
-    function handleValidate() {
-        deleteComment(comment.id)
+    async function handleValidate() {
+        setIsDeleting(true)
         setIsOpen(false)
+        try {
+            await deleteComment(comment.id)
+        } finally {
+            setIsDeleting(false)
+        }
     }
 
 
@@ -23,9 +29,15 @@ export function SingleComment({comment, deleteComment}) {
         <p className={styles.content}>{comment.content}</p>
         
             <div className={styles.actions}>
-                <button type="button" className={`${styles.quiet} ${styles.danger}`} onClick={()=> setIsOpen(true)}>
-                    <Trash2 size={14} aria-hidden="true" />
-                    Delete
+                <button type="button" className={`${styles.quiet} ${styles.danger}`} aria-label={`Delete the comment from ${comment.name}`} onClick={()=> setIsOpen(true)} disabled={isDeleting} >
+                {isDeleting ? 
+                <>
+                <LoaderPinwheel className={styles.spin} size={16} aria-hidden="true" />
+                Deleting…
+                </>
+                 :
+                <Trash2 size={16} aria-hidden="true" />
+                }
                 </button>
             </div>
     <ConfirmDialog isOpen={isOpen} message={`Delete the comment from ${comment.name}?`} onCancel={()=> setIsOpen(false)} onValidate={handleValidate} />
