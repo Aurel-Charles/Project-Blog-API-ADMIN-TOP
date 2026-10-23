@@ -27,10 +27,11 @@ Access is restricted to the administrator account. Any other account gets a clea
   - publish / unpublish, edit, view and delete directly from each row
   - errors are shown on the row they belong to
 - **Post page**
-  - the post as readers will see it, with the same actions as the dashboard
+  - the post as readers will see it, with the same actions as the dashboard (the HTML content is sanitized again with DOMPurify before being displayed)
   - comment moderation: read and delete any comment
 - **Post form**
   - one component for both creating and editing (empty or pre-filled)
+  - a **rich text editor** (TinyMCE, self-hosted) whose toolbar only offers what the API accepts: paragraphs, `h2` / `h3` headings, bold, italic, lists, quotes, links and code blocks
   - validation errors from the API shown under the matching field
   - after saving, redirects to the post page
 - **Feedback on slow requests**
@@ -43,6 +44,8 @@ Access is restricted to the administrator account. Any other account gets a clea
 - **React 19** + **Vite**
 - **React Router** (data mode: `createBrowserRouter`, layout route with `Outlet`)
 - **CSS Modules** with global design tokens (CSS custom properties)
+- **TinyMCE** (`tinymce` + `@tinymce/tinymce-react`), self-hosted under the GPL licence: no account or API key
+- **DOMPurify** to sanitize post HTML before rendering it
 - **Lucide React** for icons
 - Fonts: **Newsreader** (reading) and **Fira Sans** (interface), from Google Fonts
 
@@ -51,10 +54,16 @@ Access is restricted to the administrator account. Any other account gets a clea
 ```bash
 git clone git@github.com:Aurel-Charles/Project-Blog-API-ADMIN-TOP.git
 cd Project-Blog-API-ADMIN-TOP
-npm install
+npm install            # also copies TinyMCE into public/tinymce (postinstall script)
 cp .env.example .env   # then set the two URLs
 npm run dev
 ```
+
+### TinyMCE
+
+TinyMCE is installed with npm and served by the site itself. A `postinstall` script (`postinstall.js`) copies `node_modules/tinymce` into `public/tinymce` after every `npm install`, including on Netlify during the build. The editor loads it with `tinymceScriptSrc="/tinymce/tinymce.min.js"` and `licenseKey="gpl"`.
+
+`public/tinymce/` is generated, so it is listed in `.gitignore`.
 
 The admin account is created by the API's seed script — there is no admin sign-up.
 
@@ -139,5 +148,7 @@ The API only accepts requests from known origins. Its `CORS_ORIGINS` variable on
 - Extracting shared components (`PostAction`, `PostDate`, `PostStatus`, `ConfirmDialog`) once a piece of UI is needed in two places
 - Links vs buttons: navigation is a `Link`, an action is a `button`
 - Opening a native `<dialog>` from React with `useRef`, `useEffect` and `showModal()`
+- Adding a rich text editor, and matching its toolbar to what the server keeps
+- Rendering HTML safely: sanitizing on the server **and** in the browser, then `dangerouslySetInnerHTML`
 - Awaiting a parent's `async` function to show a pending state, with `finally` to reset it
 - Restricting CORS to known origins
