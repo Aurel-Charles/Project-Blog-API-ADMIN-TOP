@@ -15,7 +15,7 @@ export function Dashboard() {
     useEffect(()=> {
             async function getPosts() {
                 try {
-                    const data = await apiFetch("/posts")
+                    const data = await apiFetch("/posts?status=all")
                     setPosts(data)
                 } catch (error) {
                     console.error(error)

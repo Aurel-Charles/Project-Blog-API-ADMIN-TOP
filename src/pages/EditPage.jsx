@@ -18,7 +18,7 @@ export function EditPage() {
                 setError(null)
                 try {
                     const postId = params.postId
-                    const post = await apiFetch(`/posts/${postId}`)
+                    const post = await apiFetch(`/posts/${postId}?status=all`)
                     
                     console.log(post);
                     setpost(post)

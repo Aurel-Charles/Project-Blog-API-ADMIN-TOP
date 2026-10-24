@@ -24,7 +24,7 @@ export function SinglePost() {
     useEffect(()=>{
         async function getPost() {
             try {
-                const data = await apiFetch(`/posts/${postId}`)
+                const data = await apiFetch(`/posts/${postId}?status=all`)
                 setPost(data)
             } catch (error) {
                 console.error(error);
