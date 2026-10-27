@@ -17,7 +17,7 @@ export async function apiFetch(path, method = "GET", body) {
         })
         if (!res.ok) {
             const data = await res.json()
-            const error = new Error(`HTTP error ${res.status} : ${data.error}`)  
+            const error = new Error(data.error ?? "Something went wrong. Please try again.") 
             error.errors = data.errors      //add errors for details ex: in a form  => "email is required" ...
             error.status = res.status                                     
             throw error
